@@ -9,7 +9,7 @@
       name="pensamento"
       placeholder="Digite o pensamento"
       [(ngModel)]="thinking.content"
-      class=" outline-dashed h-20 px-4 py-2 rounded-xl mb-6 focus:ring-2 focus:outline-blue-500 transition"
+      class=" outline-dashed outline-zinc-400 h-20 px-4 py-2 rounded-xl mb-6 bg-white transition"
     ></textarea>
 
     <label for="autoria" class="text-blue-900 font-bold mb-4">Autoria ou fonte</label>
@@ -19,7 +19,7 @@
       name="autoria"
       placeholder="Digite a autoria ou fonte"
       [(ngModel)]="thinking.auth"
-      class="border-none h-10 px-4 py-2 rounded-2xl mb-6 focus:ring-2 focus:ring-blue-600 transition"
+      class="outline-zinc-400 outline-solid h-10 px-4 py-2 rounded-xl mb-6 bg-white transition"
     >
 
     <label class="text-blue-900 font-bold mb-4">Selecione o modelo do card:</label>
@@ -71,8 +71,8 @@
     </div>
 
     <div class="flex justify-center items-center gap-6 mt-12">
-      <button (click)="createThink()" class="bg-blue-900 text-white w-64 py-3 rounded-lg border-2 border-blue-900 transition-all hover:border-green-400 hover:text-green-400 focus:outline-none">Salvar</button>
-      <button (click)="cancel()" class="bg-blue-900 text-white w-64 py-3 rounded-lg border-2 border-blue-900 transition-all hover:border-green-400 hover:text-green-400 focus:outline-none">Cancelar</button>
+      <button (click)="createThink()" class="bg-blue-900 text-white w-64 py-3 rounded-lg border-2 border-blue-900 transition-all hover:border-blue-800 hover:bg-blue-800 focus:outline-none hover:cursor-pointer">Salvar</button>
+      <button (click)="cancel()" class="bg-zinc-700 text-white w-64 py-3 rounded-lg border-2 border-zinc-700 transition-all hover:border-zinc-600 hover:bg-zinc-600 hover:cursor-pointer focus:outline-none">Cancelar</button>
     </div>
   </form>
 </section>
