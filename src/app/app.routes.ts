@@ -1,8 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
-import { ThoughtFormComponent } from './components/thought/thought-form/thought-form.component';
 import { NgModule } from '@angular/core';
+import { ListThoughtComponent } from './screens/list-thought/list-thought.component';
+import { ThoughtFormComponent } from './screens/thought-form/thought-form.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: ListThoughtComponent
+  },
   {
     path: 'criar',
     component: ThoughtFormComponent
@@ -12,4 +17,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
