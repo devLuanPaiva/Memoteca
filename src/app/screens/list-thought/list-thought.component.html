@@ -1,4 +1,4 @@
-<section class="max-w-7xl mx-auto p-6">
+<section class="w-[91%] mx-auto p-6">
   <header class="flex justify-between items-center mb-6">
     <h2 class="text-2xl md:text-3xl font-bold text-blue-900 leading-tight">Meu Mural</h2>
     <a
@@ -8,8 +8,8 @@
     </a>
   </header>
 
-  <div *ngIf="listThounght.length > 0; else noThounght">
-    <div *ngFor="let thounght of listThounght" class="mb-4">
+  <div *ngIf="listThounght.length > 0; else noThounght" class=" flex flex-wrap justify-center  gap-6   ">
+    <div *ngFor="let thounght of listThounght" class="mb-4  ">
       <app-thought [thinking]="thounght"></app-thought>
     </div>
   </div>
