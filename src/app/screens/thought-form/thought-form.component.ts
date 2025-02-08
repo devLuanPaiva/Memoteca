@@ -23,10 +23,10 @@ export class ThoughtFormComponent {
 
   createThink() {
     this.thinkingService.create(this.thinking).subscribe(() => {
-      this.router.navigate(['/listarPensamento']);
+      this.router.navigate(['/']);
     });
   }
   cancel() {
-    this.router.navigate(['/listarPensamento']);
+    this.router.navigate(['/']);
   }
 }
