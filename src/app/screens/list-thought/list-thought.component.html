@@ -8,8 +8,8 @@
     </a>
   </header>
 
-  <div *ngIf="listThounght.length > 0; else noThounght" class=" flex flex-wrap justify-center  gap-6   ">
-    <div *ngFor="let thounght of listThounght" class="mb-4  ">
+  <div *ngIf="listThounght.length > 0; else noThounght" class="flex flex-wrap justify-between  gap-6">
+    <div *ngFor="let thounght of listThounght" class=" flex justify-center">
       <app-thought [thinking]="thounght"></app-thought>
     </div>
   </div>
