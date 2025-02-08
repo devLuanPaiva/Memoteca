@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ThinkingService } from '../../../services/thinking.service';
+import { ThinkingService } from '../../services/thinking.service';
 import { Router } from '@angular/router';
-import { Thinking } from '../../../interfaces/thinking';
+import { Thinking } from '../../interfaces/thinking';
 import { CommonModule } from '@angular/common';
 
 @Component({

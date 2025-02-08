@@ -1,0 +1,29 @@
+<article
+  class="bg-[#f8f9fe] p-4 shadow-md"
+ 
+  [ngStyle]="{ 'box-shadow': boxShadow }"
+>
+  <img src="/assets/images/{{ thinking.model }}.png" alt="Aspas coloridas">
+
+  <p class="mx-4 my-auto text-wrap break-words">
+    {{ thinking.content }}
+  </p>
+
+  <p class="font-bold">
+    {{ thinking.auth }}
+  </p>
+
+  <div class="flex justify-end gap-4 mt-2.5">
+    <a
+
+      routerLink="/pensamentos/editarPensamento/{{thinking.id}}">
+      <fa-icon [icon]="icons.edit" size="lg" class="text-blue-600" />
+    </a>
+
+    <button
+
+      routerLink="/pensamentos/excluirPensamento/{{thinking.id}}">
+      <fa-icon [icon]="icons.trash" size="lg" class="text-blue-600" />
+    </button>
+  </div>
+</article>
