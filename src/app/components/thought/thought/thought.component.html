@@ -15,14 +15,13 @@
 
   <div class="flex justify-end gap-4 mt-2.5">
     <a
-
       routerLink="/pensamentos/editarPensamento/{{thinking.id}}">
       <fa-icon [icon]="icons.edit" size="lg" class="text-blue-600" />
     </a>
-
-    <a
-      routerLink="/pensamentos/excluirPensamento/{{thinking.id}}">
-      <fa-icon [icon]="icons.trash" size="lg" class="text-blue-600" />
-    </a>
+    <p-toast />
+    <p-confirmdialog />
+    <p-button (onClick)="delete(thinking.id! , $event)"  label="Delete" severity="danger" [outlined]="true">
+      <fa-icon [icon]="icons.trash" size="lg" class="text-red-600"  />
+    </p-button>
   </div>
 </article>
