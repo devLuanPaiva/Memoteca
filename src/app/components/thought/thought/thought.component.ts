@@ -29,8 +29,4 @@ export class ThoughtComponent {
     };
     return shadowColors[this.thinking.model] ? `8px 8px 0px ${shadowColors[this.thinking.model]}` : 'none';
   }
-
-  get thinkingClass(): string {
-    return this.thinking.content.length >= 256 ? 'max-w-full' : 'max-w-[50%]';
-  }
 }
