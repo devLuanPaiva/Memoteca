@@ -5,25 +5,28 @@ import { Thinking } from '../interfaces/thinking';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThinkingService {
-  private readonly API = environment.apiUrl
-  constructor(private readonly http: HttpClient) { }
+  private readonly API = environment.apiUrl;
+  constructor(private readonly http: HttpClient) {}
   list(): Observable<Thinking[]> {
-    return this.http.get<Thinking[]>(this.API)
+    return this.http.get<Thinking[]>(this.API + '/thinkings');
   }
 
   create(thinking: Thinking): Observable<Thinking> {
-    return this.http.post<Thinking>(this.API, thinking)
+    return this.http.post<Thinking>(this.API + '/thinkings', thinking);
   }
   edit(thinking: Thinking): Observable<Thinking> {
-    return this.http.put<Thinking>(`${this.API}/${thinking.id}`, thinking)
+    return this.http.put<Thinking>(
+      `${this.API + '/thinkings'}/${thinking.id}`,
+      thinking
+    );
   }
   delete(id: number): Observable<Thinking> {
-    return this.http.delete<Thinking>(`${this.API}/${id}`)
+    return this.http.delete<Thinking>(`${this.API + '/thinkings'}/${id}`);
   }
   findById(id: number): Observable<Thinking> {
-    return this.http.get<Thinking>(`${this.API}/${id}`)
+    return this.http.get<Thinking>(`${this.API + '/thinkings'}/${id}`);
   }
 }
