@@ -10,7 +10,7 @@
 
   <div *ngIf="listThounght.length > 0; else noThounght" class="flex flex-wrap justify-between  gap-6">
     <div *ngFor="let thounght of listThounght" class=" flex justify-center">
-      <app-thought [thinking]="thounght"></app-thought>
+      <app-thought [thinking]="thounght" (loadList)="ngOnInit()"></app-thought>
     </div>
   </div>
 
