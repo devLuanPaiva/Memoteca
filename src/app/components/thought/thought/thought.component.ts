@@ -1,27 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Thinking } from '../../../interfaces/thinking';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
-import { ButtonModule } from 'primeng/button';
 import { ThinkingService } from '../../../services/thinking.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationDialogService } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-thought',
   standalone: true,
-  imports: [
-    RouterModule,
-    CommonModule,
-    FontAwesomeModule,
-    ConfirmDialogModule,
-    ToastModule,
-    ButtonModule,
-  ],
+  imports: [RouterModule, CommonModule, FontAwesomeModule],
   templateUrl: './thought.component.html',
-  providers: [ConfirmationService, MessageService] 
 })
 export class ThoughtComponent {
   @Input() thinking: Thinking = {
@@ -30,11 +20,9 @@ export class ThoughtComponent {
     auth: 'Luan',
     model: 'model1',
   };
-  constructor(
-    private readonly service: ThinkingService,
-    private readonly confirmationService: ConfirmationService,
-    private readonly messageService: MessageService
-  ) {}
+  @Output() loadList = new EventEmitter();
+  confirmationDialogService = inject(ConfirmationDialogService);
+  constructor(private readonly service: ThinkingService) {}
   icons = { edit: faEdit, trash: faTrash };
 
   get boxShadow(): string {
@@ -48,37 +36,13 @@ export class ThoughtComponent {
       : 'none';
   }
   delete(id: number, event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Tem certeza que deseja excluir este pensamento?',
-      header: 'Confirmação de exclusão',
-      icon: 'pi pi-exclamation-triangle',
-      rejectButtonProps: {
-        label: 'Cancel',
-        severity: 'secondary',
-        outlined: true,
-      },
-      acceptButtonProps: {
-        label: 'Delete',
-        severity: 'danger',
-      },
-      accept: () => {
+    this.confirmationDialogService
+      .openDialog()
+      .pipe(filter((answer) => answer === true))
+      .subscribe(() => {
         this.service.delete(id).subscribe(() => {
-          this.messageService.add({
-            severity: 'info',
-            summary: 'Confirm',
-            detail: 'Pensamento deletado com sucesso',
-          });
+          this.loadList.emit()
         });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rejected',
-          detail: 'Cancelado com sucesso',
-        });
-      },
-    });
-
+      });
   }
 }
