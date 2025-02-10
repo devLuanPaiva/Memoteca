@@ -7,15 +7,15 @@ import { EditThoughtComponent } from './screens/edit-thought/edit-thought.compon
 export const routes: Routes = [
   {
     path: '',
-    component: ListThoughtComponent
+    loadChildren: () => import('./screens/list-thought/list-thought.module').then(m => m.ListThoughtRoutingModule)
   },
   {
     path: 'criar',
-    component: ThoughtFormComponent
+    loadChildren: () => import('./screens/thought-form/thought-form.module').then(m => m.ThoughtFormRoutingModule)
   },
   {
     path: 'editar/:id',
-    component: EditThoughtComponent
+    loadChildren: () => import('./screens/edit-thought/edit-thought.module').then(m => m.EditThoughtRoutingModule)
   }
 ];
 @NgModule({
