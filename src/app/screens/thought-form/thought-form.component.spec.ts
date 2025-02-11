@@ -61,5 +61,8 @@ describe('ThoughtFormComponent', () => {
     expect(mockThinkingService.create).toHaveBeenCalledWith(component.thinking);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
-
+  it('should navigate to home when cancel() is called', () => {
+    component.cancel();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+  });
 })
