@@ -42,5 +42,9 @@ describe('ListThoughtComponents', () => {
     expect(mockThinkingService.list).toHaveBeenCalled();
     expect(component.listThought.length).toBe(2);
   });
-
+  it('should display thoughts when listThought is not empty', () => {
+    fixture.detectChanges();
+    const thoughtElements = fixture.nativeElement.querySelectorAll('app-thought');
+    expect(thoughtElements.length).toBe(2);
+  });
 })
