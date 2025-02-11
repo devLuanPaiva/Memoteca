@@ -44,6 +44,16 @@ describe('EditThoughtComponent', () => {
   });
   it('must search a thought by ID at startup', () => {
     expect(mockThinkingService.findById).toHaveBeenCalledWith(1);
-    expect(component.thinking).toEqual({ id: 1, auth: 'Autor', content: 'Conteúdo', model: 'model1' });
+    expect(component.thinking).toEqual({
+      id: 1,
+      auth: 'Autor',
+      content: 'Conteúdo',
+      model: 'model1',
+    });
+  });
+  it('must call the service to edit a thought and redirect', () => {
+    component.editThink();
+    expect(mockThinkingService.edit).toHaveBeenCalledWith(component.thinking);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
 });
