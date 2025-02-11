@@ -13,12 +13,12 @@ import { ThoughtComponent } from '../../components/thought/thought/thought.compo
   templateUrl: './list-thought.component.html',
 })
 export class ListThoughtComponent implements OnInit {
-  listThounght: Thinking[] = []
+  listThought: Thinking[] = []
   constructor(private readonly service: ThinkingService) { }
   commentSplash = faCommentSlash
   ngOnInit(): void {
-    this.service.list().subscribe((listThounght) => {
-      this.listThounght = listThounght
+    this.service.list().subscribe((listThought) => {
+      this.listThought = listThought
     })
   }
 }
