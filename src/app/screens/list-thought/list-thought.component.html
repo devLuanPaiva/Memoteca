@@ -8,13 +8,13 @@
     </a>
   </header>
 
-  <div *ngIf="listThounght.length > 0; else noThounght" class="flex flex-wrap justify-between  gap-6">
-    <div *ngFor="let thounght of listThounght" class=" flex justify-center">
-      <app-thought [thinking]="thounght" (loadList)="ngOnInit()"></app-thought>
+  <div *ngIf="listThought.length > 0; else noThought" class="flex flex-wrap justify-between  gap-6">
+    <div *ngFor="let thought of listThought" class=" flex justify-center">
+      <app-thought [thinking]="thought" (loadList)="ngOnInit()"></app-thought>
     </div>
   </div>
 
-  <ng-template #noThounght>
+  <ng-template #noThought>
     <div class="flex flex-col items-center justify-center space-y-7  h-[60vh]">
       <p class="text-center text-gray-500">Você ainda não adicionou nenhum pensamento. Clique em "Adicionar pensamento"
         para começar.</p>

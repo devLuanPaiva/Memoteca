@@ -40,7 +40,7 @@ describe('ListThoughtComponents', () => {
   it('should call list() on ngOnInit and populate listThought', () => {
     component.ngOnInit();
     expect(mockThinkingService.list).toHaveBeenCalled();
-    expect(component.listThounght.length).toBe(2);
+    expect(component.listThought.length).toBe(2);
   });
 
 })
