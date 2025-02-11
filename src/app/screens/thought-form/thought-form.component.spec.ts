@@ -40,4 +40,13 @@ describe('ThoughtFormComponent', () => {
 
     expect(component.thinking.content).toBe('Novo pensamento!');
   });
+  it('should update thinking.auth when user types in input', () => {
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('#autoria');
+    input.value = 'Autor Exemplo';
+    input.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    expect(component.thinking.auth).toBe('Autor Exemplo');
+  });
 })
