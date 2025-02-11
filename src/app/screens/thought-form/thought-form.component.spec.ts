@@ -65,4 +65,11 @@ describe('ThoughtFormComponent', () => {
     component.cancel();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
+  it('should update thinking.model when user selects a model', () => {
+    const radio: HTMLInputElement = fixture.nativeElement.querySelector('input[value="model2"]');
+    radio.click();
+    fixture.detectChanges();
+
+    expect(component.thinking.model).toBe('model2');
+  });
 })
