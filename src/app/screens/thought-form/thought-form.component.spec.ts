@@ -49,4 +49,17 @@ describe('ThoughtFormComponent', () => {
 
     expect(component.thinking.auth).toBe('Autor Exemplo');
   });
+  it('should call create() and navigate on createThink()', () => {
+    component.thinking = {
+      content: 'Pensamento Teste',
+      auth: 'Autor Teste',
+      model: 'model1'
+    };
+
+    component.createThink();
+
+    expect(mockThinkingService.create).toHaveBeenCalledWith(component.thinking);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+  });
+
 })
