@@ -77,4 +77,12 @@ describe('ThinkingService', () => {
     expect(req.request.method).toBe('PUT');
     req.flush(updatedThinking);
   });
+  it('should delete a thinking by id', () => {
+    service.delete(1).subscribe((response) => {
+      expect(response).toBeTruthy()
+    })
+    const req = httpMock.expectOne(`${API}/thinkings/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush({});
+  })
 })
