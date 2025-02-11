@@ -47,5 +47,19 @@ describe('ThinkingService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockThinkings);
   });
+  it('should create a new thinking', () => {
+    const newThinking: Thinking = {
+      id: 3, content: 'New Thinking',
+      auth: '',
+      model: ''
+    };
 
+    service.create(newThinking).subscribe((thinking) => {
+      expect(thinking).toEqual(newThinking);
+    });
+
+    const req = httpMock.expectOne(`${API}/thinkings`);
+    expect(req.request.method).toBe('POST');
+    req.flush(newThinking);
+  });
 })
