@@ -56,4 +56,8 @@ describe('EditThoughtComponent', () => {
     expect(mockThinkingService.edit).toHaveBeenCalledWith(component.thinking);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
+  it('must redirect when canceling', () => {
+    component.cancel();
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+  });
 });
