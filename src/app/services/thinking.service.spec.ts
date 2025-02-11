@@ -85,4 +85,19 @@ describe('ThinkingService', () => {
     expect(req.request.method).toBe('DELETE');
     req.flush({});
   })
+  it('should find a thinking by id', () => {
+    const mockThinking: Thinking = {
+      id: 1, content: 'Find Me',
+      auth: '',
+      model: ''
+    };
+
+    service.findById(1).subscribe((thinking) => {
+      expect(thinking).toEqual(mockThinking);
+    });
+
+    const req = httpMock.expectOne(`${API}/thinkings/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockThinking);
+  });
 })
