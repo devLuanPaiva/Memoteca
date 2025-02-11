@@ -62,4 +62,19 @@ describe('ThinkingService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(newThinking);
   });
+  it('should edit an existing thinking', () => {
+    const updatedThinking: Thinking = {
+      id: 1, content: 'Updated Content',
+      auth: '',
+      model: ''
+    };
+
+    service.edit(updatedThinking).subscribe((thinking) => {
+      expect(thinking).toEqual(updatedThinking);
+    });
+
+    const req = httpMock.expectOne(`${API}/thinkings/1`);
+    expect(req.request.method).toBe('PUT');
+    req.flush(updatedThinking);
+  });
 })
