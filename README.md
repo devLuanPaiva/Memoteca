@@ -1,59 +1,64 @@
 # Memoteca
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+Memoteca é um projeto desenvolvido durante um curso da Alura, seguindo os conhecimentos essenciais do Angular. O objetivo é criar um CRUD para armazenar trechos de músicas, citações de livros, pensamentos e suas melhores ideias.
 
-## Development server
+## Tecnologias Utilizadas
 
-To start a local development server, run:
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-```bash
-ng serve
-```
+- **Angular 19**
+- **TypeScript**
+- **Tailwind CSS**
+- **Jasmine & Karma** (para testes de software)
+- **FontAwesome** (para ícones)
+- **Angular Material** (para componentes visuais)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Status do Projeto
 
-## Code scaffolding
+- **Versão:** 1.0
+- **Disponível em Produção:** [Acesse o Memoteca](https://memoteca-weld-omega.vercel.app/)
+- **Testes:** O projeto conta com mais de 20 testes de software garantindo estabilidade e confiabilidade.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instalação e Execução
 
-```bash
-ng generate component component-name
-```
+Para rodar o projeto localmente, siga os passos abaixo:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/devLuanPaiva/Memoteca.git
+   cd memoteca
+   ```
 
-```bash
-ng generate --help
-```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-## Building
+3. Rode o servidor de desenvolvimento:
+   ```bash
+   ng serve
+   ```
 
-To build the project run:
+4. Acesse a aplicação no navegador:
+   ```
+   http://localhost:4200/
+   ```
 
-```bash
-ng build
-```
+## Testes
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+Para rodar os testes automatizados:
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Contribuição
 
-For end-to-end (e2e) testing, run:
+Caso queira contribuir com melhorias para o projeto, fique à vontade para abrir issues e pull requests.
 
-```bash
-ng e2e
-```
+## Licença
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Este projeto é de uso livre para fins educacionais e de aprendizado.
 
-## Additional Resources
+---
+Desenvolvido com ♥ durante o aprendizado de Angular! 🚀
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
