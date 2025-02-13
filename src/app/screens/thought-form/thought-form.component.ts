@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThinkingService } from '../../services/thinking.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,26 +10,32 @@ import { CommonModule } from '@angular/common';
   templateUrl: './thought-form.component.html',
 })
 export class ThoughtFormComponent implements OnInit {
-  thinking!: FormGroup
+  form!: FormGroup;
 
   constructor(
     private readonly thinkingService: ThinkingService,
     private readonly router: Router,
-    private readonly formBuilder: FormBuilder) { }
+    private readonly formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.thinking = this.formBuilder.group({
-      content: [''],
-      auth: [''],
-      model: ['model1'],
+    this.form = this.formBuilder.group({
+      content: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+      auth: ['', [Validators.required, Validators.minLength(3)]],
+      model: ['model1', [Validators.required]]
     });
   }
 
   createThink() {
-    this.thinkingService.create(this.thinking.value).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+    if (this.form.valid) {
+      this.thinkingService.create(this.form.value).subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
+
   cancel() {
     this.router.navigate(['/']);
   }
