@@ -1,22 +1,37 @@
 <section class="w-[90%]  mx-auto p-4 font-inter">
   <header class="text-center my-4">
-    <h2 class="text-3xl font-bold text-blue-900 leading-tight">Adicione um <br>pensamento novo:</h2>
+    <h2 class="text-3xl font-bold text-blue-900 leading-tight">Edite seu <br>pensamento:</h2>
   </header>
-  <form class="bg-blue-100 p-8 rounded-2xl flex flex-col">
+  <form class="bg-blue-100 p-8 rounded-2xl flex flex-col" [formGroup]="form">
     <label for="pensamento" class="text-blue-900 font-bold mb-2">Pensamento</label>
     <textarea type="textarea" class="outline-dashed outline-zinc-400 h-20 px-4 py-2 rounded-xl mb-6 bg-white transition"
-      id="pensamento" name="pensamento" placeholder="Digite o pensamento" [(ngModel)]="thinking.content"></textarea>
+      id="pensamento" formControlName="content" placeholder="Digite o pensamento">
+    </textarea>
+    <p class="text-red-600 font-medium text-justify"
+      *ngIf="form.get('content')?.errors && form.get('content')?.touched">
+      Pensamento é obrigatório!
+    </p>
+
     <label for="autoria" class="text-blue-900 font-bold mb-4">Autoria ou fonte</label>
     <input type="text" class="outline-zinc-400 outline-solid h-10 px-4 py-2 rounded-xl mb-6 bg-white transition"
-      id="autoria" name="autoria" placeholder="Digite a autoria ou fonte" [(ngModel)]="thinking.auth">
+      id="autoria" formControlName="auth" placeholder="Digite a autoria ou fonte">
+    <p class="text-red-600 font-medium text-justify"
+      *ngIf="form.get('auth')?.errors?.['required'] && form.get('auth')?.touched">
+      Autoria é obrigatória!
+    </p>
+    <p class="text-red-600 font-medium text-justify"
+      *ngIf="form.get('auth')?.errors?.['minLength'] && form.get('auth')?.touched">
+      Autoria precisa ter no mínimo 3 caracteres!
+    </p>
+
     <label for="model" class="text-blue-900 font-bold mb-4">Selecione o modelo do card:</label>
     <div class="flex flex-wrap gap-6 justify-center">
       <div class="flex flex-col items-center">
         <label class="flex items-center gap-4 cursor-pointer">
-          <input type="radio" id="model1" value="model1" name="modelo-card" [(ngModel)]="thinking.model" class="hidden">
+          <input type="radio" id="model1" value="model1" formControlName="model" class="hidden">
           <div class="w-8 h-8 border border-blue-900 rounded-full flex items-center justify-center">
             <span
-              [ngClass]="{'bg-blue-900': thinking.model === 'model1', 'bg-transparent': thinking.model !== 'model1'}"
+              [ngClass]="{'bg-blue-900': form.get('model')?.value === 'model1', 'bg-transparent': form.get('model')?.value !== 'model1'}"
               class="w-5 h-5 rounded-full transition-all"></span>
           </div>
           <span>Modelo 1</span>
@@ -24,17 +39,17 @@
 
         <div class="bg-blue-50 p-4 max-w-xs my-4 shadow-lg shadow-blue-900 rounded-lg">
           <img src="/assets/images/model1.png" alt="Aspas azuis" class="mb-3">
-          <p class="break-words text-center">{{ thinking.content }}</p>
-          <p class="break-words text-center font-bold"><b>{{ thinking.auth }}</b></p>
+          <p class="break-words text-center">{{ form.get('content')?.value }}</p>
+          <p class="break-words text-center font-bold"><b>{{ form.get('auth')?.value }}</b></p>
         </div>
       </div>
 
       <div class="flex flex-col items-center">
         <label class="flex items-center gap-4 cursor-pointer">
-          <input type="radio" id="model2" value="model2" name="modelo-card" [(ngModel)]="thinking.model" class="hidden">
+          <input type="radio" id="model2" value="model2" formControlName="model" class="hidden">
           <div class="w-8 h-8 border border-blue-900 rounded-full flex items-center justify-center">
             <span
-              [ngClass]="{'bg-blue-900': thinking.model === 'model2', 'bg-transparent': thinking.model !== 'model2'}"
+              [ngClass]="{'bg-blue-900': form.get('model')?.value === 'model2', 'bg-transparent': form.get('model')?.value !== 'model2'}"
               class="w-5 h-5 rounded-full transition-all"></span>
           </div>
           <span>Modelo 2</span>
@@ -42,17 +57,17 @@
 
         <div class="bg-blue-50 p-4 max-w-xs my-4 shadow-lg shadow-blue-400 rounded-lg">
           <img src="/assets/images/model2.png" alt="Aspas azul claro" class="mb-3">
-          <p class="break-words text-center">{{ thinking.content }}</p>
-          <p class="break-words text-center font-bold">{{ thinking.auth }}</p>
+          <p class="break-words text-center">{{ form.get('content')?.value }}</p>
+          <p class="break-words text-center font-bold">{{ form.get('auth')?.value }}</p>
         </div>
       </div>
 
       <div class="flex flex-col items-center">
         <label class="flex items-center gap-4 cursor-pointer">
-          <input type="radio" id="model3" value="model3" name="modelo-card" [(ngModel)]="thinking.model" class="hidden">
+          <input type="radio" id="model3" value="model3" formControlName="model" class="hidden">
           <div class="w-8 h-8 border border-blue-900 rounded-full flex items-center justify-center">
             <span
-              [ngClass]="{'bg-blue-900': thinking.model === 'model3', 'bg-transparent': thinking.model !== 'model3'}"
+              [ngClass]="{'bg-blue-900': form.get('model')?.value === 'model3', 'bg-transparent': form.get('model')?.value !== 'model3'}"
               class="w-5 h-5 rounded-full transition-all"></span>
           </div>
           <span>Modelo 3</span>
@@ -60,14 +75,18 @@
 
         <div class="bg-blue-50 p-4 max-w-xs my-4 shadow-lg shadow-green-400 rounded-lg">
           <img src="/assets/images/model3.png" alt="Aspas verdes" class="mb-3">
-          <p class="break-words text-center">{{ thinking.content }}</p>
-          <p class="break-words text-center font-bold">{{ thinking.auth }}</p>
+          <p class="break-words text-center">{{ form.get('content')?.value }}</p>
+          <p class="break-words text-center font-bold">{{ form.get('auth')?.value }}</p>
         </div>
       </div>
     </div>
     <div class="flex justify-center items-center gap-6 mt-12">
-      <button (click)="editThink()"
-        class="bg-blue-900 text-white w-64 py-3 rounded-lg border-2 border-blue-900 transition-all hover:border-blue-800 hover:bg-blue-800 focus:outline-none hover:cursor-pointer">Salvar</button>
+      <button (click)="editThink()" [disabled]="form.invalid"
+        [ngClass]="form.invalid ? 'bg-gray-400 border-gray-400 text-gray-700 cursor-not-allowed' : 'bg-blue-900 text-white border-blue-900 hover:bg-blue-800 hover:border-blue-800 hover:cursor-pointer'"
+        class="w-64 py-3 rounded-lg border-2 transition-all focus:outline-none">
+        Salvar
+      </button>
+
       <button (click)="cancel()"
         class="bg-zinc-700 text-white w-64 py-3 rounded-lg border-2 border-zinc-700 transition-all hover:border-zinc-600 hover:bg-zinc-600 hover:cursor-pointer focus:outline-none">Cancelar</button>
     </div>
