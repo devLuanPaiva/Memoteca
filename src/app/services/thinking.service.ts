@@ -11,10 +11,10 @@ export class ThinkingService {
   private readonly API = environment.apiUrl;
   constructor(private readonly http: HttpClient) {}
   list(numberPage: number): Observable<Thinking[]> {
-    const itemsByPage = 0;
+    const itemsByPage = 10;
     let params = new HttpParams()
       .set('_page', numberPage)
-      .set('_limit', itemsByPage);
+      .set('_limit', itemsByPage.toString());
 
     return this.http.get<Thinking[]>(this.API + '/thinkings', { params });
   }
