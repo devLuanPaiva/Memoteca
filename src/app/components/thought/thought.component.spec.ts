@@ -34,7 +34,7 @@ describe('ThoughtComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            snapshot: { paramMap: { get: jasmine.createSpy().and.returnValue('1') } } 
+            snapshot: { paramMap: { get: jasmine.createSpy().and.returnValue('1') } }
           }
         }
       ],
@@ -57,5 +57,12 @@ describe('ThoughtComponent', () => {
     expect(confirmationDialogServiceSpy.openDialog).toHaveBeenCalled();
     expect(thinkingServiceSpy.delete).toHaveBeenCalledWith(thinkingId);
     expect(component.loadList.emit).toHaveBeenCalled();
+  });
+  it('should apply correct boxShadow based on thinking model', () => {
+    component.thinking = { id: 1, content: 'Test', auth: 'Luan', model: 'model2', favorite: false };
+    fixture.detectChanges();
+
+    const boxShadow = component.boxShadow;
+    expect(boxShadow).toBe('8px 8px 0px #6BD1FF');
   });
 })
