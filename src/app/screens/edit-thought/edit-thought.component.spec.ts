@@ -53,7 +53,7 @@ describe('EditThoughtComponent', () => {
       auth: 'Autor',
       content: 'Conteúdo',
       model: 'model1',
-     
+
     });
   });
 
@@ -73,5 +73,10 @@ describe('EditThoughtComponent', () => {
     expect(component.enableButton()).toBe('disabled');
   });
 
-  
+  it('should enable the button when form is valid', () => {
+    component.form.controls['content'].setValue('Valid Content');
+    component.form.controls['auth'].setValue('Valid Author');
+    component.form.controls['model'].setValue('Valid Model');
+    expect(component.enableButton()).toBe('');
+  });
 });
