@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class ThinkingService {
   private readonly API = environment.apiUrl;
   constructor(private readonly http: HttpClient) { }
-  list(numberPage: number, filter?: string): Observable<Thinking[]> {
+  list(numberPage: number, filter?: string, favorites?: boolean): Observable<Thinking[]> {
     const itemsByPage = 10;
     let params = new HttpParams()
       .set('page', numberPage)
@@ -18,6 +18,9 @@ export class ThinkingService {
 
     if (filter) {
       params = params.set('filter', filter);
+    }
+    if (favorites) {
+      params = params.set('favorite', true);
     }
 
     return this.http.get<Thinking[]>(this.API + '/thinkings', { params });
