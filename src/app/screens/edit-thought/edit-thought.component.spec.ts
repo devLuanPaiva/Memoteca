@@ -53,7 +53,7 @@ describe('EditThoughtComponent', () => {
       auth: 'Autor',
       content: 'Conteúdo',
       model: 'model1',
-
+     
     });
   });
 
@@ -68,4 +68,10 @@ describe('EditThoughtComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
 
+  it('should disable the button when form is invalid', () => {
+    component.form.controls['content'].setValue('');
+    expect(component.enableButton()).toBe('disabled');
+  });
+
+  
 });
