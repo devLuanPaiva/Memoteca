@@ -1,30 +1,33 @@
-<section class="w-[91%] mx-auto p-6">
+<section class="w-[91%] mx-auto p-6 space-y-10">
   <header class="flex justify-between items-center mb-6">
     <h2 class="text-2xl md:text-3xl font-bold text-blue-900 leading-tight">Meu
       Mural</h2>
-    <a
-      class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 hover:cursor-pointer focus:ring-blue-500"
+    <a class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 hover:cursor-pointer focus:ring-blue-500"
       routerLink="/criar">
       Adicionar pensamento
     </a>
   </header>
+  <form>
+    <label class="flex items-center border border-blue-600 rounded-lg px-3 py-2 w-full focus-within:border-blue-500">
+      <input type="text" name="search" class="w-full outline-none bg-transparent placeholder-gray-500"
+        placeholder="O que você procura?" [(ngModel)]="filter" (keyup)="filterThoughts()">
 
-  <div *ngIf="listThought.length > 0; else noThought"
-    class="flex flex-wrap justify-between  gap-6">
+      <fa-icon [icon]="icons.filter" class="text-gray-500 ml-2" />
+    </label>
+  </form>
+  <div *ngIf="listThought.length > 0; else noThought" class="flex flex-wrap justify-between  gap-6">
     <div *ngFor="let thought of listThought" class=" flex justify-center">
       <app-thought [thinking]="thought" (loadList)="ngOnInit()"></app-thought>
     </div>
   </div>
-  <app-load-more-button
-    [haveMoreThought]="haveMoreThought"
-    (click)="loadMoreThoughts()"
+  <app-load-more-button [haveMoreThought]="haveMoreThought" (click)="loadMoreThoughts()"
     (keydown.enter)="loadMoreThoughts()" />
   <ng-template #noThought>
     <div class="flex flex-col items-center justify-center space-y-7  h-[60vh]">
       <p class="text-center text-gray-500">Você ainda não adicionou nenhum
         pensamento. Clique em "Adicionar pensamento"
         para começar.</p>
-      <fa-icon [icon]="commentSplash" class="text-gray-700 text-9xl" />
+      <fa-icon [icon]="icons.commentSplash" class="text-gray-700 text-9xl" />
     </div>
   </ng-template>
 </section>
