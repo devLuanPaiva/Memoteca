@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCommentSlash } from '@fortawesome/free-solid-svg-icons';
-import { ThoughtComponent } from '../../components/thought/thought/thought.component';
+import { ThoughtComponent } from '../../components/thought/thought.component';
 import { LoadMoreButtonComponent } from "../../components/shared/load-more-button/load-more-button.component";
 
 @Component({
