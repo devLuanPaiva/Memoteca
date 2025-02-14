@@ -15,9 +15,9 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 ## Status do Projeto
 
-- **Versão:** 1.0
+- **Versão:** 1.5
 - **Disponível em Produção:** [Acesse o Memoteca](https://memoteca-weld-omega.vercel.app/)
-- **Testes:** O projeto conta com mais de 20 testes de software garantindo estabilidade e confiabilidade.
+- **Testes:** O projeto conta com mais de 25 testes de software garantindo estabilidade e confiabilidade.
 
 ## Instalação e Execução
 
