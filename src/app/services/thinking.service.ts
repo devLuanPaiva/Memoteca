@@ -9,12 +9,16 @@ import { environment } from '../../environments/environment';
 })
 export class ThinkingService {
   private readonly API = environment.apiUrl;
-  constructor(private readonly http: HttpClient) {}
-  list(numberPage: number): Observable<Thinking[]> {
+  constructor(private readonly http: HttpClient) { }
+  list(numberPage: number, filter?: string): Observable<Thinking[]> {
     const itemsByPage = 10;
     let params = new HttpParams()
       .set('page', numberPage)
       .set('limit', itemsByPage.toString());
+
+    if (filter) {
+      params = params.set('filter', filter);
+    }
 
     return this.http.get<Thinking[]>(this.API + '/thinkings', { params });
   }
