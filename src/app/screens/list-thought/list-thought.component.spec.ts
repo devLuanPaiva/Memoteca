@@ -4,7 +4,8 @@ import { ThinkingService } from '../../services/thinking.service';
 import { of } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideRouter } from '@angular/router';
-import { ThoughtComponent } from '../../components/thought/thought/thought.component';
+
+import { ThoughtComponent } from '../../components/thought/thought.component';
 import { CommonModule } from '@angular/common';
 
 const mockThinkingService = {
