@@ -1,7 +1,7 @@
+import { Thinking } from './../interfaces/thinking';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Thinking } from '../interfaces/thinking';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -32,6 +32,11 @@ export class ThinkingService {
       thinking
     );
   }
+  changeFavorite(thinking: Thinking): Observable<Thinking> {
+    thinking.favorite = !thinking.favorite;
+    return this.edit(thinking);
+  }
+
   delete(id: number): Observable<Thinking> {
     return this.http.delete<Thinking>(`${this.API + '/thinkings'}/${id}`);
   }
