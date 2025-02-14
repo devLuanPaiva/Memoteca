@@ -26,4 +26,8 @@ describe('ConfirmationDialogComponent', () => {
     component.onNot();
     expect(dialogRefSpy.close).toHaveBeenCalledWith(false);
   });
+  it('should close the dialog with true when onYes is called', () => {
+    component.onYes();
+    expect(dialogRefSpy.close).toHaveBeenCalledWith(true);
+  });
 })
