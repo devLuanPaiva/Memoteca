@@ -1,0 +1,7 @@
+/src/**/*.spec.ts
+.idea/
+/.idea/
+/.vscode/
+.vscode/
+/dist/
+.dist/

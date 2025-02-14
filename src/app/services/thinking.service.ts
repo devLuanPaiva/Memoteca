@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { Thinking } from './../interfaces/thinking';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Thinking } from '../interfaces/thinking';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -9,9 +9,21 @@ import { environment } from '../../environments/environment';
 })
 export class ThinkingService {
   private readonly API = environment.apiUrl;
-  constructor(private readonly http: HttpClient) {}
-  list(): Observable<Thinking[]> {
-    return this.http.get<Thinking[]>(this.API + '/thinkings');
+  constructor(private readonly http: HttpClient) { }
+  list(numberPage: number, filter?: string, favorites?: boolean): Observable<Thinking[]> {
+    const itemsByPage = 10;
+    let params = new HttpParams()
+      .set('page', numberPage)
+      .set('limit', itemsByPage.toString());
+
+    if (filter) {
+      params = params.set('filter', filter);
+    }
+    if (favorites) {
+      params = params.set('favorite', true);
+    }
+
+    return this.http.get<Thinking[]>(this.API + '/thinkings', { params });
   }
 
   create(thinking: Thinking): Observable<Thinking> {
@@ -23,6 +35,11 @@ export class ThinkingService {
       thinking
     );
   }
+  changeFavorite(thinking: Thinking): Observable<Thinking> {
+    thinking.favorite = !thinking.favorite;
+    return this.edit(thinking);
+  }
+
   delete(id: number): Observable<Thinking> {
     return this.http.delete<Thinking>(`${this.API + '/thinkings'}/${id}`);
   }
