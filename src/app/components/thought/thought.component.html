@@ -6,12 +6,18 @@
   <p class="font-bold">
     {{ thinking.auth }}
   </p>
-  <div class="flex justify-end gap-4 mt-2.5">
-    <a routerLink="/editar/{{thinking.id}}">
-      <fa-icon [icon]="icons.edit" size="lg" class="text-blue-600" />
-    </a>
-    <button (click)="delete(thinking.id!, $event)" class="cursor-pointer">
-      <fa-icon [icon]="icons.trash" size="lg" class="text-red-600" />
+  <div class="flex justify-between items-center mt-2.5">
+    <button (click)="toggleFavorite()" class="cursor-pointer">
+      <fa-icon [icon]="icons.star" size="lg"
+        [ngClass]="{'text-yellow-400': thinking.favorite, 'text-gray-400': !thinking.favorite}" />
     </button>
+    <div class="flex gap-4">
+      <a routerLink="/editar/{{thinking.id}}">
+        <fa-icon [icon]="icons.edit" size="lg" class="text-blue-600 hover:text-blue-800" />
+      </a>
+      <button (click)="delete(thinking.id!, $event)" class="cursor-pointer">
+        <fa-icon [icon]="icons.trash" size="lg" class="text-red-600 hover:text-red-800" />
+      </button>
+    </div>
   </div>
 </article>
