@@ -3,8 +3,9 @@ import { EditThoughtComponent } from './edit-thought.component';
 import { ThinkingService } from '../../services/thinking.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
 
 class MockThinkingService {
   findById = jasmine
@@ -25,8 +26,9 @@ describe('EditThoughtComponent', () => {
     mockThinkingService = new MockThinkingService();
 
     await TestBed.configureTestingModule({
-      imports: [CommonModule, FormsModule, EditThoughtComponent],
+      imports: [CommonModule, FormsModule, ReactiveFormsModule, EditThoughtComponent],
       providers: [
+        FormBuilder,
         { provide: ThinkingService, useValue: mockThinkingService },
         { provide: Router, useValue: mockRouter },
         {
@@ -42,22 +44,28 @@ describe('EditThoughtComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  it('must search a thought by ID at startup', () => {
+
+  it('must search a thought by ID at startup and populate the form', () => {
     expect(mockThinkingService.findById).toHaveBeenCalledWith(1);
-    expect(component.thinking).toEqual({
+    fixture.detectChanges()
+    expect(component.form.value).toEqual({
       id: 1,
       auth: 'Autor',
       content: 'Conteúdo',
       model: 'model1',
+
     });
   });
+
   it('must call the service to edit a thought and redirect', () => {
     component.editThink();
-    expect(mockThinkingService.edit).toHaveBeenCalledWith(component.thinking);
+    expect(mockThinkingService.edit).toHaveBeenCalledWith(component.form.value);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
+
   it('must redirect when canceling', () => {
     component.cancel();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
   });
+
 });
