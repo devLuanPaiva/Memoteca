@@ -1,11 +1,11 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Thinking } from '../../../interfaces/thinking';
+import { Thinking } from '../../interfaces/thinking';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ThinkingService } from '../../../services/thinking.service';
-import { ConfirmationDialogService } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { ThinkingService } from '../../services/thinking.service';
+import { ConfirmationDialogService } from '../shared/confirmation-dialog/confirmation-dialog.component';
 import { filter } from 'rxjs';
 @Component({
   selector: 'app-thought',

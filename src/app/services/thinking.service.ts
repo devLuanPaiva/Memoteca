@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Thinking } from '../interfaces/thinking';
@@ -9,9 +9,18 @@ import { environment } from '../../environments/environment';
 })
 export class ThinkingService {
   private readonly API = environment.apiUrl;
-  constructor(private readonly http: HttpClient) {}
-  list(): Observable<Thinking[]> {
-    return this.http.get<Thinking[]>(this.API + '/thinkings');
+  constructor(private readonly http: HttpClient) { }
+  list(numberPage: number, filter?: string): Observable<Thinking[]> {
+    const itemsByPage = 10;
+    let params = new HttpParams()
+      .set('page', numberPage)
+      .set('limit', itemsByPage.toString());
+
+    if (filter) {
+      params = params.set('filter', filter);
+    }
+
+    return this.http.get<Thinking[]>(this.API + '/thinkings', { params });
   }
 
   create(thinking: Thinking): Observable<Thinking> {

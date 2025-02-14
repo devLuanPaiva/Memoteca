@@ -1,0 +1,9 @@
+<div class="mt-10 w-full flex items-center justify-center"
+    *ngIf="haveMoreThought; else noMoreThoughts">
+    <button
+        class="w-64 py-3 rounded-lg border-2 transition-all focus:outline-none bg-blue-900 text-white border-blue-900 hover:bg-blue-800 hover:border-blue-800 hover:cursor-pointer">Carregar
+        mais</button>
+</div>
+<ng-template #noMoreThoughts>
+    <p class="text-xl text-center mt-10">Não há mais pensamentos para exibir.</p>
+</ng-template>
