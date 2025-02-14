@@ -16,13 +16,14 @@ export class ThoughtFormComponent implements OnInit {
     private readonly thinkingService: ThinkingService,
     private readonly router: Router,
     private readonly formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       content: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
       auth: ['', [Validators.required, Validators.minLength(3)]],
-      model: ['model1', [Validators.required]]
+      model: ['model1', [Validators.required]],
+      favorite: [false]
     });
   }
 
